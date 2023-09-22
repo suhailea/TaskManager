@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}  
+<div class="container">
+    <h1>Task Manager</h1>
+    <div class="table-responsive">
+        <div class="table-wrapper">			
+            <div class="table-title">
+                <div class="row">
+					<div class="col-xs-6">
+						<h2>Task <b>List</b></h2>
+					</div>
+                    <div class="col-xs-6">
+                        <a href="/crts"><button type="button" class="btn-lg" data-toggle="modal" data-target="#mymodal">Create A New Task</button></a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th style="width: 40%;">Task Name</th>
+                        <th style="width: 40%;">Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for row in tasks %}
+                    <tr>
+                        <td>{{row.0}}</td>
+                        <td>{{row.1}}</td>
+                        <td>{{row.2}}</td>
+                        <td>
+                            <a href="/update{{row.0}}" class="edit" title="Edit" data-toggle="tooltip" data-target="update.html{{row.0}}"><i class="material-icons">&#xE254;</i></a>
+                            <a href="/delete/{{row.0}}" class="delete" title="Delete" onclick="return confirm('Are you sure want to Delete ?')"data-toggle="tooltip" ><i class="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                </tbody>
+
+                {% endfor %}
+            </table>
+        </div>
+
+   
+    </div>
+    
+</div> 
+{% endblock %}
+</html>
